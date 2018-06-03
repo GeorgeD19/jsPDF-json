@@ -1,6 +1,6 @@
 {
   "name": "jspdf-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/GeorgeD19/jsPDF-json",
   "description": "PDF generation from JSON using jsPDF",
   "main": "dist/jspdf-json.min.js",
