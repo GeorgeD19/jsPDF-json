@@ -56,6 +56,15 @@
                     case "autoPrint":
                         doc.autoPrint();
                     break
+                    case "addImage":
+                        var src = params.hasOwnProperty("src") ? params["src"] : "";
+                        var type = params.hasOwnProperty("type") ? params["type"] : "";
+                        var x = params.hasOwnProperty("x") ? params["x"] : 0;
+                        var y = params.hasOwnProperty("y") ? params["y"] : 0;
+                        var width = params.hasOwnProperty("width") ? params["width"] : 0;
+                        var height = params.hasOwnProperty("height") ? params["height"] : 0;
+                        doc.addImage(src, type, x, y, width, height);
+                    break
                     // case "capjoinstyles":
 
                     // break
