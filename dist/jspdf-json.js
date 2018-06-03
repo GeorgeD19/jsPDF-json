@@ -15,9 +15,10 @@
      * @returns {jsPDF}
      * @name JSON
      * @param schema {String} JSON schema to be parsed and run.
+     * @param data {Object} Object containing data that will be replaced using bracket notation.
      * @param callback {Function} to call when the rendering has finished.
      */
-    jsPDFAPI.JSON = function (schema, callback) {
+    jsPDFAPI.JSON = function (schema, data, callback) {
         'use strict';
 
         if(typeof callback !== 'function') {
@@ -26,6 +27,12 @@
 
         try {
             var operations = JSON.parse(schema);
+        } catch(e) {
+            console.log(e);
+        }
+
+        try {
+            var replacements = JSON.parse(data);
         } catch(e) {
             console.log(e);
         }
@@ -182,6 +189,23 @@
                         var text = params.hasOwnProperty("text") ? params["text"] : "";
                         var x = params.hasOwnProperty("x") ? params["x"] : 0;
                         var y = params.hasOwnProperty("y") ? params["y"] : 0;
+
+                        var found = [],
+                            rxp = /{([^}]+)}/g,
+                            curMatch;
+
+                        while( curMatch = rxp.exec(text) ) {
+                            found.push(curMatch[1]);
+                        }
+
+                        found.forEach(function(key) {
+                            var replacement = Object.byString(replacements, key);
+                            if (typeof replacement == 'undefined') {
+                                replacement = '';
+                            }
+                            text = text.replace("{"+key+"}", replacement);
+                        });
+
                         doc.text(text, x, y);
                     break
                     case "triangle":
@@ -204,3 +228,18 @@
         callback();
     }
 })(jsPDF.API);
+
+Object.byString = function(o, s) {
+    s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+    s = s.replace(/^\./, '');           // strip a leading dot
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
+}
