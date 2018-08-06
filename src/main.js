@@ -49,8 +49,8 @@
                         var font = params.hasOwnProperty("font") ? params["font"] : "";
                         doc.addFont(postscript, name, font);
                     break
+                    // Deprecated
                     // case "addhtml":
-
                     // break
                     case "addMetadata":
                         var metadata = params.hasOwnProperty("metadata") ? params["metadata"] : "";
@@ -73,7 +73,6 @@
                         doc.addImage(src, type, x, y, width, height);
                     break
                     // case "capjoinstyles":
-
                     // break
                     case "circle":
                         var x = params.hasOwnProperty("x") ? params["x"] : 0;
@@ -140,7 +139,7 @@
                         var ch4 = params.hasOwnProperty("ch4") ? params["ch4"] : "";
                         doc.setDrawColor(ch1, ch2, ch3, ch4);
                     break
-                    case "setfillcolor":
+                    case "setFillColor":
                         var ch1 = params.hasOwnProperty("ch1") ? params["ch1"] : "";
                         var ch2 = params.hasOwnProperty("ch2") ? params["ch2"] : "";
                         var ch3 = params.hasOwnProperty("ch3") ? params["ch3"] : "";
@@ -176,9 +175,6 @@
                         var page = params.hasOwnProperty("page") ? params["page"] : 0;
                         doc.setPage(page);
                     break
-                    // case "setproperties":
-
-                    // break
                     case "setTextColor":
                         var r = params.hasOwnProperty("r") ? params["r"] : "";
                         var g = params.hasOwnProperty("g") ? params["g"] : "";
@@ -218,9 +214,6 @@
                         var style = params.hasOwnProperty("style") ? params["style"] : "";
                         doc.triangle(x1, y1, x2, y2, x3, y3, style);
                     break
-                    // case "viewerpreferences":
-
-                    // break
                 }
             }
         });

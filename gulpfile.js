@@ -26,10 +26,6 @@ gulps.registerTasks({
     'clean': (function(done) {
         del(['./dist']).then(function(){done()});
     }),
-    'setup': (function(done) {
-        gulp.watch('./src/**/*.js', ['js']);
-    }),
 });
 
-gulps.registerSeries('js', ['clean', 'compile-js'])
-gulps.registerSeries('default', ['setup']);
+gulps.registerSeries('default', ['clean', 'compile-js']);

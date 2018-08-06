@@ -49,8 +49,8 @@
                         var font = params.hasOwnProperty("font") ? params["font"] : "";
                         doc.addFont(postscript, name, font);
                     break
+                    // Deprecated
                     // case "addhtml":
-
                     // break
                     case "addMetadata":
                         var metadata = params.hasOwnProperty("metadata") ? params["metadata"] : "";
@@ -176,9 +176,6 @@
                         var page = params.hasOwnProperty("page") ? params["page"] : 0;
                         doc.setPage(page);
                     break
-                    // case "setproperties":
-
-                    // break
                     case "setTextColor":
                         var r = params.hasOwnProperty("r") ? params["r"] : "";
                         var g = params.hasOwnProperty("g") ? params["g"] : "";
@@ -218,9 +215,6 @@
                         var style = params.hasOwnProperty("style") ? params["style"] : "";
                         doc.triangle(x1, y1, x2, y2, x3, y3, style);
                     break
-                    // case "viewerpreferences":
-
-                    // break
                 }
             }
         });
